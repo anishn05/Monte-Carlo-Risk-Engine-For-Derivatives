@@ -4,7 +4,7 @@ import pandas as pd
 import yfinance as yf
 from pandas_datareader import data as pdr
 
-def fetch_spot_history(ticker='SPY', period='2y', interval='1d', verbose=False):
+def fetch_spot_history(ticker='AAPL', period='2y', interval='1d', verbose=False):
     """
     Fetch adjusted close price series for ticker using yfinance.
     Returns a pandas Series of adjusted close prices.
