@@ -1,12 +1,13 @@
 # run_examples.py
-from src.utils import fetch_spot_history, historical_volatility
+from src.utils import fetch_spot_history, historical_volatility, get_risk_free_rate_from_fred
 from src.mc_pricer import bs_price, mc_price_bs, mc_greeks_finite_differences, mc_delta_pathwise, mc_delta_lr
 
 def quick_run():
-    series = fetch_spot_history('SPY', period='2y')
+    series = fetch_spot_history('AAPL', period='2y')
     S0 = float(series.iloc[-1])
     sigma = historical_volatility(series)
-    r = 0.01
+    #r = 0.01
+    r = get_risk_free_rate_from_fred()
     K = S0
     T = 30/252
     print(f"S0={S0:.2f}, sigma={sigma:.4f}, r={r}, K={K:.2f}, T={T:.4f}")
