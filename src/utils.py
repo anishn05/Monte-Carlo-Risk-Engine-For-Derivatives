@@ -26,7 +26,7 @@ def fetch_spot_history(ticker='SPY', period='2y', interval='1d', verbose=False,
         try:
             if verbose:
                 print(f"Attempt {attempt}: yf.download({ticker}, period={period}, interval={interval})")
-            df = yf.download(ticker, period=period, interval=interval, progress=False, threads=threads)
+            df = yf.download(ticker, period=period, interval=interval, progress=False, threads=threads, auto_adjust=True)
             if isinstance(df, pd.DataFrame) and len(df) > 0:
                 # prefer Adj Close if present
                 col = 'Adj Close' if 'Adj Close' in df.columns else 'Close'

@@ -1,11 +1,12 @@
 # run_examples.py
 from src.utils import fetch_spot_history, historical_volatility, get_risk_free_rate_from_fred
-from src.mc_pricer import bs_price, mc_price_bs, mc_greeks_finite_differences, mc_greeks_pathwise, mc_greeks_lr, price_option_sabr_via_hagan
+from src.mc_pricer import bs_price, mc_price_bs, mc_greeks_finite_differences, mc_greeks_pathwise, mc_greeks_lr, price_option_sabr_via_hagan, mc_price_heston
+from src.exotics import mc_price_asian
 
 def quick_run():
-    series = fetch_spot_history('AAPL', period='2y')
-    S0 = float(series.iloc[-1])
-    sigma = historical_volatility(series)
+    ser = fetch_spot_history('AAPL', period='2y')
+    S0 = float(ser.iloc[-1])
+    sigma = historical_volatility(ser)
     r = 0.037
     #r = get_risk_free_rate_from_fred()
     K = S0
@@ -25,16 +26,11 @@ def quick_run():
     print("Likelihood ratio:", lr)
 
 def run_with_stoch_vols():
-    series = fetch_spot_history('AAPL', period='2y')
-    S0 = float(series.iloc[-1])
-    K = S0
-    r = 0.037
-    T = 30/252
-    beta = 0.9
-    alpha = 0.25
-    rho = -0.3
-    nu = 0.5
-    price, iv = price_option_sabr_via_hagan(S0, K, r, T, alpha, beta, rho, nu, option='call')
+    hparams = {'kappa':1.2, 'theta':0.08, 'xi':0.5, 'rho':-0.7, 'v0':0.2786**2}
+    price, se = mc_price_asian(284.15, 284.15, 0.037, None, 0.119, steps=30, n_paths=50000,
+                           option='call', avg_type='arithmetic', model='heston',
+                           heston_params=hparams, seed=42, batch_size=10000)
+    print(price, se)
 
 if __name__ == '__main__':
     run_with_stoch_vols()

@@ -1,19 +1,49 @@
-# Monte Carlo Derivatives Pricer (Python)
+# Monte Carlo Option Pricing & Greeks Project
 
-This repo implements a vectorized Monte Carlo engine for pricing European options
-under Black–Scholes (GBM), and implements three estimators for Greeks:
-- finite-difference (central bump),
-- pathwise estimator,
-- likelihood ratio estimator.
+## Overview
+This project implements a suite of Monte Carlo simulation techniques to price vanilla and exotic options and compute their sensitivities (Greeks). The focus is on stochastic volatility models, path-dependent options, and variance reduction methods to produce accurate and numerically robust results.
 
-It also demonstrates variance reduction (antithetic sampling) and validation vs
-the Black–Scholes closed-form formula.
+The notebook demonstrates end-to-end workflows, including simulation, numerical validation, and reporting of pricing and Greek estimates with standard errors and convergence checks.
 
-## Quickstart
-1. Create venv and install requirements: `pip install -r requirements.txt`
-2. Run `python run_examples.py` for a quick check.
-3. Open `notebooks/mc_pricer.ipynb` to run experiments and produce plots.
+---
 
-## Data sources
-- Underlying price history: Yahoo Finance via `yfinance`
-- Risk-free rates (optional): FRED via `pandas_datareader`
+## Implemented Methodologies
+
+### Monte Carlo Simulation for Vanilla Options
+- European Call and Put options
+- Finite difference and pathwise Greeks computation
+
+### Stochastic Volatility Models
+- Heston model simulation
+- SABR model simulation and pricing
+
+### Exotic Options
+- Asian options (arithmetic & geometric averages)
+- Barrier options (up-and-out, down-and-out, up-and-in, down-and-in)
+
+### Variance Reduction Techniques
+- Antithetic variates
+- Control variates
+- Common random numbers (CRN)
+
+### Greeks Computation
+- Delta, Gamma, Vega, Theta
+- Finite differences, pathwise, and likelihood ratio methods
+
+### Numerical Validation & Reporting
+- Standard error computation
+- Convergence plots vs. number of Monte Carlo paths
+- Bias checks against analytical formulas (where available)
+
+---
+
+## Project Highlights
+- Modular Monte Carlo framework for multiple option types.
+- Demonstrates robust handling of path-dependence and stochastic volatility.
+- Includes experiments to validate numerical stability, convergence, and variance reduction effectiveness.
+- Provides clear outputs for prices and Greeks along with their associated uncertainties.
+
+---
+
+## Notes
+This project focuses on **practical implementation and numerical validation**, with a strong emphasis on reproducibility and clarity for interview discussions.

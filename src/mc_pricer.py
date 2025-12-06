@@ -238,7 +238,6 @@ def mc_greeks_lr(S0, K, r, sigma, T,
         'gamma_lr': None  # not provided (second-order LR omitted)
     }
 
-
 # ----------------------------
 # Convenience wrapper: compute all three-method Greeks
 # ----------------------------
@@ -262,23 +261,6 @@ def mc_all_greeks(S0, K, r, sigma, T, n_sims=200_000, option='call', seed=1234, 
                       n_sims=n_sims, option=option,
                       seed=seed, antithetic=antithetic)
     return {'finite': finite, 'pathwise': pathwise, 'lr': lr}
-
-
-# ----------------------------
-# If run as script, quick sanity check
-# ----------------------------
-if __name__ == "__main__":
-    S0 = 100.0
-    K = 100.0
-    r = 0.01
-    sigma = 0.2
-    T = 30/252
-    n_sims = 100000
-    res = mc_all_greeks(S0, K, r, sigma, T, n_sims=n_sims, option='call', seed=42)
-    print("Finite differences:", res['finite'])
-    print("Pathwise:", {k:v for k,v in res['pathwise'].items() if 'price' in k or 'delta' in k or 'vega' in k or 'theta' in k})
-    print("LR:", {k:v for k,v in res['lr'].items() if 'price' in k or 'delta' in k or 'vega' in k or 'theta' in k})
-
 
 def price_option_heston(S0, K, r, kappa, theta, xi, rho, v0, T, steps=252, n_paths=100000, option='call', seed=42):
     """
