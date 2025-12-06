@@ -1,4 +1,4 @@
-# Monte Carlo Option Pricing & Greeks Project
+# Monte Carlo Pricing Engine for Options
 
 ## Overview
 This project implements a suite of Monte Carlo simulation techniques to price vanilla and exotic options and compute their sensitivities (Greeks). The focus is on stochastic volatility models, path-dependent options, and variance reduction methods to produce accurate and numerically robust results.
