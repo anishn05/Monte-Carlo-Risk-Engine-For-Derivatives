@@ -33,17 +33,5 @@ The notebook demonstrates end-to-end workflows, including simulation, numerical 
 ### Numerical Validation & Reporting
 - Standard error computation
 - Convergence plots vs. number of Monte Carlo paths
-- Bias checks against analytical formulas (where available)
 
----
 
-## Project Highlights
-- Modular Monte Carlo framework for multiple option types.
-- Demonstrates robust handling of path-dependence and stochastic volatility.
-- Includes experiments to validate numerical stability, convergence, and variance reduction effectiveness.
-- Provides clear outputs for prices and Greeks along with their associated uncertainties.
-
----
-
-## Notes
-This project focuses on **practical implementation and numerical validation**, with a strong emphasis on reproducibility and clarity for interview discussions.
