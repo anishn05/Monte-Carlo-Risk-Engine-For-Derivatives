@@ -4,6 +4,8 @@ import warnings
 import numpy as np
 import pandas as pd
 import yfinance as yf
+import os
+from fredapi import Fred
 
 try:
     from pandas_datareader import data as pdr
@@ -105,9 +107,6 @@ def historical_volatility(price_series, trading_days=252):
     daily_std = logrets.std(ddof=1)
     annualized = daily_std * np.sqrt(trading_days)
     return float(annualized)
-
-import os
-from fredapi import Fred
 
 def get_risk_free_rate_from_fred(series="DGS3MO"):
     """
